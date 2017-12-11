@@ -9,7 +9,7 @@ public class Main {
 
         int nOP = 5;//количество объектов в ObjectPool
         int nT = 20;//количество потоков
-        Objectpool pool = new Objectpool(nOP);
+        ObjectPool pool = new ObjectPool(nOP);
 
         class MyCode implements Runnable {
             public void run() {
