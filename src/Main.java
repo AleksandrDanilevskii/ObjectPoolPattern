@@ -7,8 +7,8 @@ public class Main {
         просят завершить его работу. При этом вас не просят немедленно завершить свою работу.
         Вас просят корректно завершить работу.*/
 
-        int nOP = 5;//количество объектов в ObjectPool
-        int nT = 20;//количество потоков
+        int nOP = 10;//количество объектов в ObjectPool
+        int nT = 50;//количество потоков
         ObjectPool pool = new ObjectPool(nOP);
 
         class MyCode implements Runnable {
@@ -21,20 +21,18 @@ public class Main {
                     out.println(Thread.currentThread().getName() + " rented shoes.");
                     Thread.sleep(5000);//время аренды
                     pool.returnshoes(i);
-                    out.println(Thread.currentThread().getName() + " returned shoes.");
-                    out.println("Time "+ Thread.currentThread().getName() + ": " + (currentTimeMillis() - t) + "ms");
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                //out.println(Thread.currentThread().getName() + " played");
-                //out.println("Time "+ Thread.currentThread().getName() + ": " + (currentTimeMillis() - t));
+                out.println(Thread.currentThread().getName() + " returned shoes.");
+                out.println("Time "+ Thread.currentThread().getName() + ": " + (currentTimeMillis() - t) + "ms");
             }
         }
 
         Thread[] threads = new Thread[nT];
         for (int i = 0; i < threads.length; i++) {
-            threads[i] = new Thread(new MyCode()); //Thread(Runnable объект_потока
+            threads[i] = new Thread(new MyCode()); //Thread(Runnable объект потока)
             threads[i].start();
         }
     }

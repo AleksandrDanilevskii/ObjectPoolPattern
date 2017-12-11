@@ -17,15 +17,18 @@ public class ObjectPool {
 
     public synchronized int rentshoes(int i) throws InterruptedException { //аренда обуви
         //Синхронизированый блок кода может быть выполнен только одним потоком одновременно.
+        Thread.sleep(3);
         shoes[i] = false;
         return i;
 
     }
 
     public void returnshoes(int i) throws InterruptedException {
-        Thread.sleep(200);
+        Thread.sleep(100);
         shoes[i] = true;
+
     }
+
 
     public synchronized int next(int i) throws InterruptedException {
         if (shoes[i]) return i % shoes.length;
